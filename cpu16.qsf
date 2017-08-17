@@ -55,4 +55,25 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_133 -to a[0]
+set_location_assignment PIN_135 -to a[1]
+set_location_assignment PIN_136 -to a[2]
+set_location_assignment PIN_137 -to a[3]
+set_location_assignment PIN_88 -to btn[0]
+set_location_assignment PIN_89 -to btn[1]
+set_location_assignment PIN_90 -to btn[2]
+set_location_assignment PIN_91 -to btn[3]
+set_location_assignment PIN_23 -to clk
+set_location_assignment PIN_128 -to k[0]
+set_location_assignment PIN_121 -to k[1]
+set_location_assignment PIN_125 -to k[2]
+set_location_assignment PIN_129 -to k[3]
+set_location_assignment PIN_132 -to k[4]
+set_location_assignment PIN_126 -to k[5]
+set_location_assignment PIN_124 -to k[6]
+set_location_assignment PIN_87 -to led[0]
+set_location_assignment PIN_86 -to led[1]
+set_location_assignment PIN_85 -to led[2]
+set_location_assignment PIN_84 -to led[3]
+set_location_assignment PIN_25 -to reset
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

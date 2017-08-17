@@ -106,6 +106,11 @@ module Processor (clk, rst, p, p_addr, r_data, w_data, d_addr, we);
 
     wire [7:0] push_size = arg_a;
 
+    always @ (negedge clk or posedge rst) begin
+        if (rst)                 stop <= 0;
+        else if (i_kind == HALT) stop <= 1;
+    end
+
     always @ (posedge clk or posedge rst) begin
         if (rst) begin
             BP <= 0;
@@ -113,8 +118,6 @@ module Processor (clk, rst, p, p_addr, r_data, w_data, d_addr, we);
             IP <= 0;
             RP <= 0;
             AS <= 0;
-
-            stop <= 0;
 
             i_count <= 0;
         end
@@ -142,7 +145,6 @@ module Processor (clk, rst, p, p_addr, r_data, w_data, d_addr, we);
                     RP <= r_data;
                     AS <= 0;
                 end
-                else if (i_kind == HALT) stop <= 1;
             end
         end
     end
@@ -152,7 +154,7 @@ module Processor (clk, rst, p, p_addr, r_data, w_data, d_addr, we);
         casez(op)
             8'b00000001: begin
                 i_kind <= HALT;
-                i_count_max <= 0;
+                i_count_max <= 1;
                 push <= 0;
             end
             8'b10zzzzzz: begin
@@ -208,6 +210,11 @@ module Processor (clk, rst, p, p_addr, r_data, w_data, d_addr, we);
         endcase
 
         case (i_kind)
+            HALT: begin
+                d_addr <= 16'h01;
+                we     <= 0;
+                w_data <= 0;
+            end
             ARITH: begin
                 case (i_count)
                     1: begin // load A
